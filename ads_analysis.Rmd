@@ -1,0 +1,123 @@
+---
+title: "Ads_analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+getwd()
+# program setting ? 
+```
+```{r}
+# setup the libs
+library(tidyverse)
+library(reshape2)
+```
+
+
+```{r}
+ads <- read.csv("Advertising.csv")
+```
+
+```{r}
+View(ads)
+```
+
+```{r}
+head(ads)
+```
+
+```{r}
+str(ads)
+
+```
+
+```{r}
+ads %>% ggplot(aes(x = TV, y = Sales)) +
+  geom_point()
+```
+
+```{r}
+ads %>% ggplot(aes(x = Newspaper, y = Sales)) +
+  geom_point()
+```
+
+```{r}
+ads %>% ggplot(aes(x = Radio, y = Sales)) +
+  geom_point()
+```
+
+```{r}
+summary(ads) # show results  
+```
+
+```{r}
+fit <- lm(Sales ~ TV, data = ads)
+summary(fit)
+```
+
+```{r}
+fit <- lm(Sales ~ Newspaper, data = ads)
+summary(fit)
+```
+
+```{r}
+fit <- lm(Sales ~ Newspaper + TV + Radio, data = ads)
+summary(fit)
+
+```
+
+```{r}
+library(MASS)
+data <- Boston
+?Boston
+head(data)
+attach(data)
+```
+
+```{r}
+fit <- lm(crim ~., data = data)
+summary(fit)
+```
+
+
+```{r}
+
+lm.fit = lm(medv~ poly(lstat, degree = 20), data=Boston)
+
+plot(lstat, medv)   # Plots data points only.
+abline(lm.fit)      # Plots regression line.
+
+plot(predict(lm.fit), residuals((lm.fit)))
+
+
+
+```
+
+```{r}
+plot(predict(lstat), medv)   # Plots data points only.
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
